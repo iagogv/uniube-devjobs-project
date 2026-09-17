@@ -26,38 +26,8 @@
 
         <section class="jobs-section container">
             <h2 class="sr-only">Lista de vagas</h2>
-            <div class="jobs-grid" id="jobs-grid">
-                <article class="job-card">
-                    <div class="job-card__header">
-                        <span class="job-card__badge job-card__badge--remote">Remoto</span>
-                        <h3 class="job-card__title">Desenvolvedor(a) Frontend React</h3>
-                        <p class="job-card__company">TechNova Ltda</p>
-                    </div>
-                    <div class="job-card__body">
-                        <p class="job-card__tech">React · TypeScript · CSS</p>
-                        <p class="job-card__salary">R$ 6.000 – R$ 9.000</p>
-                        <p class="job-card__location">📍 Remoto</p>
-                    </div>
-                    <div class="job-card__footer">
-                        <button type="button" class="btn btn--primary">Ver detalhes</button>
-                    </div>
-                </article>
-                <article class="job-card">
-                    <div class="job-card__header">
-                        <span class="job-card__badge job-card__badge--onsite">Presencial</span>
-                        <h3 class="job-card__title">Data Scientist</h3>
-                        <p class="job-card__company">TechNova Ltda</p>
-                    </div>
-                    <div class="job-card__body">
-                        <p class="job-card__tech">ML · Análise de dados · Deep Learning</p>
-                        <p class="job-card__salary">R$ 6.000 – R$ 9.000</p>
-                        <p class="job-card__location">📍 Presencial</p>
-                    </div>
-                    <div class="job-card__footer">
-                        <button type="button" class="btn btn--primary">Ver detalhes</button>
-                    </div>
-                </article>
-            </div>
+            <p id="resultado-contagem" class="result-count" aria-live="polite"></p>
+            <div class="jobs-grid" id="jobs-grid"></div>
         </section>
     </main>
 
