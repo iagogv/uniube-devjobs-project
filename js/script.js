@@ -103,3 +103,74 @@ function renderizarVagas(lista) {
 
 // Chamada para renderizar na tela
 renderizarVagas(vagas);
+
+const inputBusca = document.getElementById('busca');
+
+function filtrarVagas(termo) {
+    const busca = termo.trim().toLowerCase();
+
+    if (!busca) {
+        return vagas;
+    }
+
+    return vagas.filter(vaga => {
+        const texto = [
+            vaga.titulo,
+            vaga.empresa,
+            vaga.local,
+            ...vaga.tecnologias
+        ].join(' ').toLowerCase();
+
+        return texto.includes(busca);
+    });
+}
+
+
+function atualizarContagem(qtd, termo) {
+  const el = document.getElementById('resultado-contagem');
+  if (!termo.trim()) {
+    el.textContent = `${qtd} vagas disponíveis`;
+  } else {
+    el.textContent = `${qtd} vaga(s) encontrada(s) para "${termo}"`;
+  }
+}
+
+inputBusca.addEventListener('input', (evento) => {
+    const termo = evento.target.value;
+    const resultado = filtrarVagas(termo);
+    renderizarVagas(resultado);
+    atualizarContagem(resultado.length, termo);
+});
+
+atualizarContagem(vagas.length, '');
+
+const THEME_KEY = 'devjobs-theme';
+const btnTheme = document.getElementById('theme-toggle');
+
+function aplicarTema(tema) {
+  document.body.classList.toggle('dark', tema === 'dark');
+  btnTheme.textContent = tema === 'dark' ? '☀️' : '🌙';
+  btnTheme.setAttribute('aria-label',
+    tema === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro'
+  );
+}
+
+function carregarTemaSalvo() {
+  const salvo = localStorage.getItem(THEME_KEY);
+  if (salvo) {
+    aplicarTema(salvo);
+    return;
+  }
+  const prefereDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  aplicarTema(prefereDark ? 'dark' : 'light');
+}
+
+function alternarTema() {
+  const isDark = document.body.classList.contains('dark');
+  const novoTema = isDark ? 'light' : 'dark';
+  aplicarTema(novoTema);
+  localStorage.setItem(THEME_KEY, novoTema);
+}
+
+btnTheme.addEventListener('click', alternarTema);
+carregarTemaSalvo();
