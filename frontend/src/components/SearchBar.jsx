@@ -1,6 +1,6 @@
 export default function SearchBar({ value, onChange }) {
   return (
-    <section className="search-section container">
+    <section className="search-section">
       <label htmlFor="busca">Buscar vagas</label>
       <input
         type="search"
